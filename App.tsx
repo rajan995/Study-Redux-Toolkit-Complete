@@ -1,24 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
 import { Provider } from 'react-redux';
 import { store } from './app/store/store';
-import { Counter } from './app/store/features/counter/counter.component';
+import { PostsList } from './app/store/features/posts/postList';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { NavigationContainer } from '@react-navigation/native';
+import { AddPost } from './app/store/features/posts/addPost';
+
 export default function App() {
+
+  const Stack = createNativeStackNavigator();
+  
   return (
     <Provider store={store}>
-    <View style={styles.container}>
-     <Counter/>
-      <StatusBar style="auto" />
-    </View>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName='Posts'>
+          <Stack.Screen name='Posts' component={PostsList} />
+          <Stack.Screen name='Add Post' component={AddPost} />
+        </Stack.Navigator>
+      </NavigationContainer>
     </Provider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
