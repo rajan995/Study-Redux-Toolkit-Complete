@@ -1,5 +1,5 @@
 import {  useSelector } from "react-redux";
-import react from 'react';
+import react, { useEffect } from 'react';
 import { View, Text } from "react-native";
 
 export const PostAuthor: react.FC<any> = ({ userId }) => {
@@ -7,6 +7,6 @@ export const PostAuthor: react.FC<any> = ({ userId }) => {
   const author = users.find((d: any) => d.id == userId);
 
   return <View>
-    <Text>By {author.name} </Text>
+    <Text>By {author.name ? author.name :'unavailable'} </Text>
   </View>
 }
